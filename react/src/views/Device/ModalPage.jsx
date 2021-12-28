@@ -56,12 +56,12 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 import Popover from "@material-ui/core/Popover";
 
 const config = {
-  bucketName: "blackpatchadmin",
-  dirName: "media" /* optional */,
-  region: "us-east-1",
-  accessKeyId: "AKIAYERD463SBLKWXFZH",
-  secretAccessKey: "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",
-  s3Url: "https://blackpatchadmin.s3.amazonaws.com/" /* optional */
+  bucketName: "",
+  dirName: "" /* optional */,
+  region: "",
+  accessKeyId: "",
+  secretAccessKey: "",
+  s3Url: "" /* optional */
 };
 let s3 = new AWS.S3(config);
 const styles = {
@@ -442,7 +442,7 @@ export class modelPage extends Component {
         ACL: "public-read",
         ServerSideEncryption: "AES256",
         Body: image,
-        Bucket: "blackpatchadmin",
+        Bucket: "",
         Key: `media/model/${date_create}`
       };
 
@@ -453,7 +453,7 @@ export class modelPage extends Component {
           let params = {
             en_name: en_name,
             es_name: es_name,
-            image: `https://blackpatchadmin.s3.amazonaws.com/media/model/${date_create}`,
+            image: `S3_bucket _url/media/model/${date_create}`,
             brandId: action_brand,
             colors: colors.toString()
           };
@@ -479,7 +479,7 @@ export class modelPage extends Component {
         ACL: "public-read",
         ServerSideEncryption: "AES256",
         Body: image,
-        Bucket: "blackpatchadmin",
+        Bucket: "",
         Key: current_model.split(".com/")[1]
       };
 
@@ -503,7 +503,7 @@ export class modelPage extends Component {
               id: edit_id,
               en_name: en_name,
               es_name: es_name,
-              image: `https://blackpatchadmin.s3.amazonaws.com/${current_model.split(".com/")[1]}`,
+              image: `S3_bucket _url/${current_model.split(".com/")[1]}`,
               brandId: action_brand,
               colors: colors.toString()
             };
@@ -515,7 +515,7 @@ export class modelPage extends Component {
       }
     } else if (action === "delete") {
       let params = {
-        Bucket: "blackpatchadmin",
+        Bucket: "",
         Key: delete_data.image.split(".com/")[1]
       };
       s3.deleteObject(params, (err, data) => {
